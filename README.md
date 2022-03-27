@@ -1,4 +1,4 @@
-# PhotosSorter
+# Photos-Sorter
 A Simple Python Tkinter GUI based app to manually sort images in a folder into selected and discarded respectfully.
 I know it is very basic but I felt it is very useful for many day to day usecases.
 Do share your suggestions and feedback.
