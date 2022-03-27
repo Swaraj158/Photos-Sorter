@@ -3,7 +3,11 @@ import shutil
 from tkinter import *
 from PIL import ImageTk, Image
 
-imgsArray = os.listdir("Images")
+sourceDirectory = "Images/"
+selectedDirectory = "Selected/"
+discardedDirectory = "Discarded/"
+
+imgsArray = os.listdir(sourceDirectory)
 
 global index
 index = 0
@@ -28,7 +32,7 @@ def rotateFunction():
 def selectFunction() :
     print('Select button is clicked.')
     global currentImg
-    shutil.copy("Images/"+currentImg,"Selected/"+currentImg)
+    shutil.copy(sourceDirectory+currentImg,selectedDirectory+currentImg)
     print(currentImg)
     print("Image Copied!")
 
@@ -40,7 +44,7 @@ def previousFunction() :
     if(index!=0):
         currentImg = imgsArray[index-1]
         global lblImage
-        lblImage=Image.open("Images/"+ currentImg)
+        lblImage=Image.open(sourceDirectory+ currentImg)
         new_height = 680
         new_width  = int(new_height * lblImage.width / lblImage.height)
         lblImage = lblImage.resize((new_width, new_height), Image.ANTIALIAS)
@@ -61,7 +65,7 @@ def nextFunction() :
         global currentImg
         currentImg = imgsArray[index+1]
         global lblImage
-        lblImage=Image.open("Images/"+ currentImg)
+        lblImage=Image.open(sourceDirectory+ currentImg)
         new_height = 680
         new_width  = int(new_height * lblImage.width / lblImage.height)
         lblImage = lblImage.resize((new_width, new_height), Image.ANTIALIAS)
@@ -76,7 +80,7 @@ def nextFunction() :
 def discardFunction() :
     print('Discard button is clicked.')
     global currentImg
-    shutil.copy("Images/"+currentImg,"Discarded/"+currentImg)
+    shutil.copy(sourceDirectory+currentImg,discardedDirectory+currentImg)
     print("Image Copied!")
 
 window_main = Tk(className='Tkinter - PhotoManager', )
@@ -98,7 +102,7 @@ button_rotate.grid(row=1,column=2,padx=20)
 
 
 # Create a Label Widget to display the text or Image
-lblImage=Image.open("Images/"+ currentImg)
+lblImage=Image.open(sourceDirectory+ currentImg)
 new_height = 680
 new_width  = int(new_height * lblImage.width / lblImage.height)
 lblImage = lblImage.resize((new_width, new_height), Image.ANTIALIAS)
